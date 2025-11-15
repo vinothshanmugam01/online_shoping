@@ -1,0 +1,113 @@
+.pageBox {
+    padding: 3rem; /* Scalable padding using rem */
+    margin: 3rem 0; /* Consistent margin for spacing */
+    background-color: hsl(0, 0%, 98%); /* Soft off-white for warmth */
+    border-radius: 12px; /* Rounded corners for modern look */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+  }
+  
+  .pageBox:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+  }
+  
+  .pageContent {
+    padding: 2rem; /* Balanced padding for content */
+    background-color: hsl(0, 0%, 100%); /* White background for contrast */
+    border-radius: 8px; /* Subtle rounding */
+    margin-bottom: 1.5rem; /* Space between product cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+  }
+  
+  .pageContent:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08); /* Enhanced shadow on hover */
+  }
+  
+  .pageContent img {
+    width: 100%; /* Responsive width */
+    max-width: 250px; /* Cap for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners */
+    object-fit: cover; /* Handle varying image sizes */
+    transition: transform 0.3s ease; /* Smooth zoom effect */
+  }
+  
+  .pageContent img:hover {
+    transform: scale(1.05); /* Subtle zoom on hover */
+  }
+  
+  .pageContent h4 {
+    font-size: 1.5rem; /* Larger, readable title */
+    font-weight: 600; /* Semi-bold for emphasis */
+    color: hsl(0, 0%, 20%); /* Darker for contrast */
+    margin-bottom: 0.75rem; /* Consistent spacing */
+  }
+  
+  .pageContent p {
+    font-size: 1rem; /* Standard text size */
+    color: hsl(0, 0%, 40%); /* Softer gray for readability */
+    line-height: 1.6; /* Improved readability */
+    margin-bottom: 1rem; /* Spacing below paragraphs */
+  }
+  
+  .pageContent .btn-dark {
+    border-radius: 6px; /* Rounded button */
+    padding: 0.5rem 1.25rem; /* Comfortable padding */
+    font-size: 0.9rem; /* Slightly smaller for balance */
+    font-weight: 500; /* Medium weight for clarity */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth button hover */
+  }
+  
+  .pageContent .btn-dark:hover {
+    background-color: hsl(0, 0%, 20%); /* Darker shade on hover */
+    transform: translateY(-2px); /* Subtle lift */
+  }
+  
+  /* Filter Section Styling */
+  .pageBox .form-select {
+    border-radius: 6px; /* Rounded select dropdown */
+    border: 1px solid hsl(0, 0%, 80%); /* Subtle border */
+    padding: 0.5rem; /* Comfortable padding */
+    font-size: 0.9rem; /* Balanced font size */
+    transition: border-color 0.3s ease; /* Smooth focus transition */
+  }
+  
+  .pageBox .form-select:focus {
+    border-color: hsl(210, 80%, 50%); /* Highlight on focus */
+    box-shadow: 0 0 0 3px rgba(34, 114, 237, 0.2); /* Focus ring */
+  }
+  
+  /* Responsive Adjustments */
+  @media screen and (max-width: 900px) {
+    .pageBox {
+      padding: 1.5rem; /* Reduced padding for medium screens */
+    }
+  
+    .pageContent {
+      padding: 1.25rem; /* Adjusted for smaller screens */
+    }
+  
+    .pageContent img {
+      max-width: 100%; /* Full width for smaller screens */
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .pageBox {
+      padding: 1rem; /* Minimal padding for small screens */
+      margin: 1.5rem 0; /* Reduced margin */
+    }
+  
+    .pageContent {
+      padding: 1rem; /* Minimal padding */
+    }
+  
+    .pageContent h4 {
+      font-size: 1.25rem; /* Smaller title for mobile */
+    }
+  
+    .pageContent p {
+      font-size: 0.9rem; /* Slightly smaller text */
+    }
+  }
