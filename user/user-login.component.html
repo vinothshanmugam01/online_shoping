@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<main class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>{{ isRegisterMode ? 'Register' : 'Login' }}</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <!-- Role dropdown only for login mode -->
+            <div class="mb-3" *ngIf="!isRegisterMode">
+              <label for="role" class="form-label">Role</label>
+              <select class="form-control" id="role" formControlName="role" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+              <div *ngIf="loginForm.get('role')?.invalid && loginForm.get('role')?.touched" class="text-danger">
+                Please select a role.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email" required>
+              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+                Please enter a valid email.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" formControlName="password" required>
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+                Password is required.
+              </div>
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="loading || loginForm.invalid">
+              {{ isRegisterMode ? 'Register' : 'Login' }}
+            </button>
+          </form>
+          <div class="text-center mt-3">
+            <a href="#" (click)="toggleMode($event)">{{ isRegisterMode ? 'Already have an account? Login' : 'Need an account? Register' }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
