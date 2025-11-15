@@ -1,0 +1,143 @@
+<app-navbar></app-navbar>
+<main class="container-fluid p-0">
+  <!-- banner start -->
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" *ngFor="let data of bannerImgs; let first = first">
+        <img [src]="data.img" class="d-block w-100" [alt]="'Banner Image ' + data.id" [class.active]="first">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- banner end -->
+
+  <!-- categoris box start -->
+  <div class="container mt-5 mb-5">
+    <div class="row categorisBox">
+      <div class="col-lg-3 col-6 categorisContent" *ngFor="let data of getCategorisData">
+        <a [routerLink]="['product-page', data.code]">
+          <img [src]="data.img" [alt]="data.name">
+          <h4>{{data.name}}</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- categoris box end -->
+
+  <!-- show product start -->
+  <!-- show appliance product -->
+  <div class="container mt-3 mb-3">
+    <div class="row productBox">
+      <p>
+        <a class="float-start link-offset-3" [routerLink]="['/product-page', 'appliances']">Best of Appliance</a>
+        <a class="float-end" [routerLink]="['/product-page', 'appliances']"><i class="bi bi-arrow-right-circle"></i></a>
+      </p>
+      <div class="col-lg-3 mt-5" *ngFor="let data of getApplianceProductData; index as i">
+        <a [routerLink]="['/product-detail', data.pdCategory, data.pdId]" class="productLink">
+          <div class="productContent" *ngIf="i <= 3">
+            <div class="productImg">
+              <img [src]="data.pdImg ? 'http://localhost:3000/uploads/' + data.pdImg : '/assets/images/placeholder.jpg'"
+                   [alt]="data.pdName"
+                   (error)="onImgError(data.pdName, 'appliances', getApplianceProductData)"
+                   style="max-width: 100%; height: auto;">
+            </div>
+            <h4>{{data.pdName}}</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- show appliance product -->
+
+  <!-- show fashion product -->
+  <div class="container mt-3 mb-3">
+    <div class="row productBox">
+      <p>
+        <a class="float-start link-offset-3" [routerLink]="['/product-page', 'fashion']">Best of Fashion</a>
+        <a class="float-end" [routerLink]="['/product-page', 'fashion']"><i class="bi bi-arrow-right-circle"></i></a>
+      </p>
+      <div class="col-lg-3 mt-5" *ngFor="let data of getFashionProductData; index as i">
+        <a [routerLink]="['/product-detail', data.pdCategory, data.pdId]" class="productLink">
+          <div class="productContent" *ngIf="i <= 3">
+            <div class="productImg">
+              <img [src]="data.pdImg ? 'http://localhost:3000/uploads/' + data.pdImg : '/assets/images/placeholder.jpg'"
+                   [alt]="data.pdName"
+                   (error)="onImgError(data.pdName, 'fashion', getFashionProductData)"
+                   style="max-width: 100%; height: auto;">
+            </div>
+            <h4>{{data.pdName}}</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- show fashion product -->
+  <!-- show product end -->
+
+  <!-- About the Project Section -->
+  <div class="container-fluid about-section">
+    <div class="about-background"></div>
+    <div class="container position-relative">
+      <div class="about-header text-center">
+        <h2 class="section-title">Discover Infinite Mart</h2>
+        <p class="about-subtitle">Your Ultimate Online Shopping Destination</p>
+      </div>
+      <div class="row align-items-center mb-5">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="about-image">
+            <img src="/assets/images/istockphoto-1215812761-612x612.jpg" alt="ShopEasy Experience" class="img-fluid">
+            <div class="image-overlay"></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="about-content">
+            <h3 class="about-title">Redefining E-Commerce</h3>
+            <p class="about-text">
+              Infinite Mart is more than just an online store—it's a seamless shopping experience crafted for you. Launched as part of the Infinite Mart initiative, we bring together a vast selection of products across categories like Fashion, Appliances, Home & Furniture, and Toys. Our platform is built with Angular and Node.js, ensuring a fast, secure, and user-friendly interface for all your shopping needs.
+            </p>
+            <p class="about-text">
+              From quick deliveries to exceptional customer support, we prioritize your satisfaction. Whether you're looking for the latest fashion trends or reliable appliances, ShopEasy has it all—backed by a 4.8/5 customer satisfaction rating from thousands of happy shoppers.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="about-milestones">
+        <h3 class="milestone-title text-center">Our Journey</h3>
+        <div class="milestone-timeline">
+          <div class="milestone-item">
+            <div class="milestone-dot"></div>
+            <div class="milestone-content">
+              <h4 class="milestone-year">2023</h4>
+              <p class="milestone-text">Infinite Mart was founded with a vision to simplify online shopping for everyone.</p>
+            </div>
+          </div>
+          <div class="milestone-item">
+            <div class="milestone-dot"></div>
+            <div class="milestone-content">
+              <h4 class="milestone-year">2024</h4>
+              <p class="milestone-text">Launched Infinite Mart, expanding our product range and user base.</p>
+            </div>
+          </div>
+          <div class="milestone-item">
+            <div class="milestone-dot"></div>
+            <div class="milestone-content">
+              <h4 class="milestone-year">2025</h4>
+              <p class="milestone-text">Achieved a 4.8/5 rating, serving thousands of happy customers worldwide.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a href="/about" class="btn btn-warning about-btn">Explore Our Story</a>
+      </div>
+    </div>
+  </div>
+  <!-- About the Project Section End -->
+</main>
