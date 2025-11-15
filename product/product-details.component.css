@@ -1,0 +1,41 @@
+.productBox {
+  background-color: hsl(0, 0%, 98%); /* Slightly off-white for a softer look */
+  padding: 3rem; /* Consistent spacing, using rem for scalability */
+  border-radius: 12px; /* Smooth rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animation */
+}
+
+.productBox:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+}
+
+.productBox img {
+  width: 100%; /* Full width for consistency */
+  max-width: 300px; /* Cap width for larger screens */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Rounded corners for images */
+  object-fit: cover; /* Ensure images fill space nicely */
+  transition: transform 0.3s ease; /* Smooth zoom effect */
+}
+
+.productBox img:hover {
+  transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+@media screen and (max-width: 900px) {
+  .productBox {
+    padding: 1.5rem; /* Reduced padding for smaller screens */
+  }
+
+  .productBox img {
+    max-width: 100%; /* Full width on smaller screens */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .productBox {
+    padding: 1rem; /* Further reduced padding for very small screens */
+  }
+}
