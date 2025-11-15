@@ -1,0 +1,124 @@
+.cartBox {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+    transition: box-shadow 0.3s ease;
+}
+
+.cartBox:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cartBox img {
+    max-width: 60px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.priceBox {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    text-align: right;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    padding: 1rem;
+}
+
+.btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.text-center {
+    padding: 2rem;
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .cartBox {
+        padding: 1.5rem;
+    }
+
+    .cartBox img {
+        max-width: 50px;
+    }
+
+    .priceBox {
+        padding: 1rem;
+    }
+
+    .table th, .table td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .cartBox {
+        padding: 1rem;
+    }
+
+    .cartBox img {
+        max-width: 40px;
+    }
+
+    .table th, .table td {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .btn-outline-secondary {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .text-end {
+        text-align: center;
+    }
+}
