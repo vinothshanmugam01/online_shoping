@@ -1,0 +1,15 @@
+.table-responsive {
+    margin-top: 20px;
+  }
+  
+  .alert {
+    margin-top: 20px;
+  }
+  
+  .form-control, .btn {
+    border-color: #0066cc;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0055aa;
+  }

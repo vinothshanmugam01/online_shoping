@@ -1,0 +1,32 @@
+<main class="container mt-5 mb-5">
+  <h2>Admin - View Feedbacks</h2>
+  <div *ngIf="loading" class="text-center">
+    <p>Loading feedbacks...</p>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+  <div *ngIf="!loading && !error && feedbacks.length > 0" class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Rating</th>
+          <th>Comment</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of feedbacks">
+          <td>{{ feedback.orderId }}</td>
+          <td>{{ feedback.rating }} / 5</td>
+          <td>{{ feedback.comment }}</td>
+          <td>{{ feedback.createdAt | date:'medium' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!loading && !error && feedbacks.length === 0" class="alert alert-info">
+    No feedbacks found.
+  </div>
+</main> 
