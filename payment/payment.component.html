@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+<main class="container mt-5 mb-5">
+  <h2>Payment</h2>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  <div *ngIf="loading" class="text-center">
+    <p>Processing payment...</p>
+  </div>
+  <div class="card" *ngIf="!loading">
+    <div class="card-header">
+      <h3>Order Summary</h3>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive" *ngIf="cartItems.length > 0">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cartItems">
+              <td>{{ item.pdName }}</td>
+              <td>{{ item.plusMinusCounter || 1 }}</td>
+              <td>{{ item.pdPrice | currency:'INR' }}</td>
+              <td>{{ (item.pdPrice * (item.plusMinusCounter || 1)) | currency:'INR' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h4 class="text-end">Total: {{ totalAmount | currency:'INR' }}</h4>
+      </div>
+      <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="paymentMethod" class="form-label">Payment Method</label>
+          <select class="form-control" id="paymentMethod" formControlName="paymentMethod">
+            <option value="" disabled>Select Payment Method</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="UPI">UPI</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+          </select>
+          <div *ngIf="paymentForm.get('paymentMethod')?.invalid && paymentForm.get('paymentMethod')?.touched" class="text-danger">
+            Payment method is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+          <div *ngIf="paymentForm.get('name')?.invalid && paymentForm.get('name')?.touched" class="text-danger">
+            Name is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea class="form-control" id="address" formControlName="address"></textarea>
+          <div *ngIf="paymentForm.get('address')?.invalid && paymentForm.get('address')?.touched" class="text-danger">
+            Address is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" class="form-control" id="phone" formControlName="phone">
+          <div *ngIf="paymentForm.get('phone')?.invalid && paymentForm.get('phone')?.touched" class="text-danger">
+            Valid 10-digit phone number is required.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="loading || paymentForm.invalid">
+          Confirm Order
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
