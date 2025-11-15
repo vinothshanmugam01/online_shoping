@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+<main class="container mt-5 mb-5">
+  <h2>Order Confirmation</h2>
+  <div *ngIf="loading" class="text-center">
+    <p>Loading order details...</p>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+  <div *ngIf="order && !loading && !error" class="card">
+    <div class="card-header">
+      <h3>Order #{{ order._id }}</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Date:</strong> {{ order.createdAt | date:'medium' }}</p>
+      <p><strong>Total Amount:</strong> {{ order.totalPrice | currency:'INR' }}</p>
+      <h4>User Details</h4>
+      <p><strong>Name:</strong> {{ userDetails?.name || 'N/A' }}</p>
+      <p><strong>Address:</strong> {{ userDetails?.address || 'N/A' }}</p>
+      <p><strong>Phone:</strong> {{ userDetails?.phone || 'N/A' }}</p>
+      <p><strong>Payment Method:</strong> {{ userDetails?.paymentMethod || 'N/A' }}</p>
+      <h4>Order Items</h4>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of order.items">
+              <td>{{ item.name || 'Unknown Product' }}</td>
+              <td>{{ item.quantity || 0 }}</td>
+              <td>{{ item.price | currency:'INR' }}</td>
+              <td>{{ (item.price * item.quantity) | currency:'INR' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="btn btn-primary mt-3" (click)="downloadPDF()">Download PDF</button>
+      <p *ngIf="!error" class="text-success mt-2">Click the button to download your bill as a PDF.</p>
+      <p *ngIf="error" class="text-danger mt-2">{{ error }}</p>
+
+      <!-- Feedback Form -->
+      <div class="mt-4">
+        <h4>Share Your Feedback</h4>
+        <div *ngIf="feedbackSuccess" class="alert alert-success">
+          Thank you for your feedback!
+        </div>
+        <div *ngIf="feedbackError" class="alert alert-danger">
+          {{ feedbackError }}
+        </div>
+        <form (ngSubmit)="submitFeedback()">
+          <div class="mb-3">
+            <label for="rating" class="form-label">Rating (1-5 Stars)</label>
+            <select class="form-control" id="rating" [(ngModel)]="feedback.rating" name="rating" required>
+              <option value="" disabled>Select Rating</option>
+              <option value="1">1 Star</option>
+              <option value="2">2 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="5">5 Stars</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="comment" class="form-label">Shopping Experience</label>
+            <textarea class="form-control" id="comment" [(ngModel)]="feedback.comment" name="comment" rows="4" placeholder="Tell us about your experience..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="feedbackLoading || feedbackSuccess">Submit Feedback</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
