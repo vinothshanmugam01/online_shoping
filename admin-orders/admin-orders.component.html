@@ -1,0 +1,70 @@
+<main class="container mt-5 mb-5">
+  <h2>Admin - Manage Orders</h2>
+  <div *ngIf="loading" class="text-center">
+    <p>Loading orders...</p>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="!loading && !error && orders.length > 0" class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>User Email</th>
+          <th>Total Amount</th>
+          <th>Date</th>
+          <th>User Details</th>
+          <th>Products</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order._id }}</td>
+          <td>{{ order.userEmail }}</td>
+          <td>{{ order.totalAmount | currency:'INR' }}</td>
+          <td>{{ order.createdAt | date:'medium' }}</td>
+          <td>
+            <p><strong>Name:</strong> {{ order.userDetails?.name || userDetails?.name || 'N/A' }}</p>
+            <p><strong>Address:</strong> {{ order.userDetails?.address || userDetails?.address || 'N/A' }}</p>
+            <p><strong>Phone:</strong> {{ order.userDetails?.phone || userDetails?.phone || 'N/A' }}</p>
+            <p><strong>Payment:</strong> {{ order.userDetails?.paymentMethod || userDetails?.paymentMethod || 'N/A' }}</p>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let item of order.products">
+                {{ item.name }} (ID: {{ item.productId }}) - {{ item.quantity }} x {{ item.price | currency:'INR' }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <select class="form-control" [(ngModel)]="order.status" (change)="updateStatus(order._id, order.status)" [disabled]="order.status === 'Cancelled' || updatingOrderId === order._id">
+              <option value="Pending">Pending</option>
+              <option value="Order is Ready">Order is Ready</option>
+              <option value="Ready to Deliver">Ready to Deliver</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+            <div *ngIf="updatingOrderId === order._id" class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Updating...</span>
+            </div>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="cancelOrder(order._id)" [disabled]="order.status === 'Cancelled' || updatingOrderId === order._id">
+              Cancel Order
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!loading && !error && orders.length === 0" class="alert alert-info">
+    No orders found.
+  </div>
+</main>
